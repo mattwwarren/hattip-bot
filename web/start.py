@@ -12,6 +12,6 @@ def build_webapp():
     hooks = Hooks()
     app = web.Application()
     app.add_routes([web.get('/', handle),
-                    web.get('/hook/{func}', handle)])
+                    web.post('/hooks/{func}', hooks.call_func)])
 
     return app
