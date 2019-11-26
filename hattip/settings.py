@@ -15,4 +15,3 @@ else:
 for k in SETTINGS_KEYS:
     if k not in SETTINGS:
         print('You are missing %s' % (k))
-

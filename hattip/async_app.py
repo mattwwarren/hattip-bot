@@ -18,7 +18,9 @@ hat_tips_received = {}
 
 async def start_onboarding(web_client: slack.WebClient, user_id: str, channel_id: str):
     # Post the onboarding message in Slack
-    response = await web_client.chat_postMessage(channel=channel_id, text='Hi there. We\'re so glad to be here.')
+    response = await web_client.chat_postMessage(
+            channel=channel_id,
+            text='Hi there. We\'re so glad to be here.')
 
     # Capture the timestamp of the message we've just posted so
     # we can use it to update the message after a user
@@ -54,8 +56,11 @@ async def onboarding_message(**payload):
 
 
 async def send_help(web_client, user_id, channel_id):
-    response = await web_client.chat_postMessage(channel=channel_id, text="Hi there. We're not sure what you mean.")
+    response = await web_client.chat_postMessage(
+            channel=channel_id,
+            text="Hi there. We're not sure what you mean.")
     ts = response['ts']
+
 
 # ============== Message Events ============= #
 # When a user sends a DM, the event type will be 'message'.
@@ -75,8 +80,9 @@ async def message(**payload):
     if user_id:
         if text and text.lower() == "start":
             return await start_onboarding(web_client, user_id, channel_id)
-    
+
         return await send_help(web_client, user_id, channel_id)
+
 
 def build_slack_client():
     ssl_context = ssl_lib.create_default_context(cafile=certifi.where())

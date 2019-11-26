@@ -1,5 +1,6 @@
 import asyncio
 
+
 class Hooks:
     def call_func(self, request):
         func = request.match_info.get('func')
