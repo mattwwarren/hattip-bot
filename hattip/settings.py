@@ -3,7 +3,7 @@ import os
 
 CONFIG_FILE = 'config.json'
 SETTINGS_KEYS = {'SLACK_BOT_OAUTH_TOKEN'}
-SETTINGS = None
+SETTINGS = {}
 
 if os.path.isfile(CONFIG_FILE):
     with open('config.json') as fp:
