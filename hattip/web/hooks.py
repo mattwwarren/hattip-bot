@@ -1,5 +1,6 @@
 import asyncio
 from json.decoder import JSONDecodeError
+from urllib.parse import parse_qsl
 
 
 class Hooks:
@@ -15,6 +16,11 @@ class Hooks:
         try:
             body = await request.json()
             print(body)
-        except JSONDecodeError as e:
+        except JSONDecodeError:
+            body = await request.text()
+            print(parse_qsl(body))
+        except Exception as e:
             print(await request.text())
             raise e
+
+        return web.Response(text="OK")
