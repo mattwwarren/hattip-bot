@@ -9,7 +9,7 @@ class Hooks:
         func = request.match_info.get('func')
         try:
             cls_func = getattr(self, func)
-            asyncio.ensure_future(cls_func(request))
+            asyncio.create_task(cls_func(request))
         except AttributeError as e:
             print('%s is not implemented.' % func)
             raise e
