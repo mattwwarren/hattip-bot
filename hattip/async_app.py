@@ -108,7 +108,7 @@ def main():
     app = build_webapp()
     app.on_startup.append(start_background_tasks)
     app.on_cleanup.append(cleanup_background_tasks)
-    web.run_app(app)
+    web.run_app(app, port=os.environ.get('PORT', 8080))
 
 
 if __name__ == "__main__":
