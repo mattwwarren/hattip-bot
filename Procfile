@@ -1,1 +1,1 @@
-kitchen-sink: python hattip/async_app.py
+web: python hattip/async_app.py
