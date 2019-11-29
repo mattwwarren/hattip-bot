@@ -9,9 +9,12 @@ class Hooks:
         func = request.match_info.get('func')
         try:
             cls_func = getattr(self, func)
-            return asyncio.ensure_future(cls_func(request))
+            asyncio.ensure_future(cls_func(request))
         except AttributeError as e:
             print('%s is not implemented.' % func)
+            raise e
+
+        return web.Response(text="OK")
 
     async def echo(self, request):
         try:
@@ -28,5 +31,3 @@ class Hooks:
         except Exception as e:
             print(await request.text())
             raise e
-
-        return web.Response(text="OK")

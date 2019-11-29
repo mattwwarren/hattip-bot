@@ -1,5 +1,5 @@
 from aiohttp import web
-from web.hooks import Hooks
+from .hooks import Hooks
 
 
 def handle(request):
