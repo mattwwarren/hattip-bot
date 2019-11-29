@@ -1,4 +1,5 @@
 import asyncio
+from json.decoder import JSONDecodeError
 
 
 class Hooks:
@@ -11,5 +12,9 @@ class Hooks:
             print('%s is not implemented.' % func)
 
     async def echo(self, request):
-        body = await request.json()
-        print(body)
+        try:
+            body = await request.json()
+            print(body)
+        except JSONDecodeError as e:
+            print(request.text())
+            raise e
