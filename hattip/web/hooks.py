@@ -16,5 +16,5 @@ class Hooks:
             body = await request.json()
             print(body)
         except JSONDecodeError as e:
-            print(request.text())
+            print(await request.text())
             raise e
